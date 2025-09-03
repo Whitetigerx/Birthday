@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🎂 Happy Birthday!</title>
+  <style>
+    :root{
+      --bg1:#6d28d9; /* purple */
+      --bg2:#0ea5e9; /* sky */
+      --bg3:#22c55e; /* green */
+      --accent:#f59e0b; /* amber */
+      --text:#ffffff;
+      --shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+
+    /* Reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;}
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      overflow:hidden;
+      background:linear-gradient(120deg,var(--bg1),var(--bg2),var(--bg3));
+      background-size: 300% 300%;
+      animation: bgShift 20s ease-in-out infinite;
+    }
+
+    @keyframes bgShift{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    .container{
+      position:relative;
+      height:100%;
+      width:100%;
+      display:grid;
+      place-items:center;
+      padding: clamp(16px, 3vw, 40px);
+    }
+
+    .card{
+      position:relative;
+      width:min(900px, 95vw);
+      backdrop-filter: blur(8px);
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:24px;
+      padding: clamp(20px, 4vw, 48px);
+      box-shadow: var(--shadow);
+      text-align:center;
+      overflow:hidden;
+      isolation:isolate;
+    }
+
+    /* Subtle glowing border */
+    .card::before{
+      content:"";
+      position:absolute; inset:-2px;
+      border-radius:inherit;
+      padding:2px;
+      background:conic-gradient(from 0deg, #fff0, #fff5, #fff0 30%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      animation: rotateGlow 8s linear infinite;
+      z-index:-1;
+    }
+    @keyframes rotateGlow{to{transform:rotate(1turn)}}
+
+    h1{
+      font-size: clamp(40px, 6vw, 84px);
+      line-height:1.05;
+      letter-spacing:1px;
+      margin-bottom: 12px;
+      background: linear-gradient(90deg,#fff,#ffe38f,#fff);
+      -webkit-background-clip:text; background-clip:text;
+      color: transparent;
+      text-shadow: 0 0 30px rgba(255,255,255,.35);
+      animation: shimmer 4s ease-in-out infinite;
+    }
+    @keyframes shimmer{
+      0%,100%{filter:drop-shadow(0 0 0 rgba(255,255,255,0.5))}
+      50%{filter:drop-shadow(0 0 16px rgba(255,255,255,0.8))}
+    }
+
+    .subtitle{
+      font-size: clamp(18px,2.5vw,24px);
+      opacity:.95;
+      margin-bottom: clamp(14px,2vw,20px);
+    }
+
+    .typewriter{
+      font-size: clamp(16px,2vw,20px);
+      max-width: 70ch;
+      margin-inline:auto;
+      min-height: 3.2em;
+      border-right: 2px solid rgba(255,255,255,.8);
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 6s steps(60,end), blink .75s step-end infinite;
+    }
+    @keyframes typing{ from{ width:0 } to{ width:100% } }
+    @keyframes blink{ 50%{ border-color: transparent } }
+
+    .cta{
+      margin-top: clamp(18px,2.5vw,26px);
+      display:flex; gap:14px; justify-content:center; flex-wrap:wrap;
+    }
+    .btn{
+      --btn-h:54px;
+      position:relative;
+      height:var(--btn-h);
+      padding:0 22px 0 56px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.28);
+      color:#fff;
+      font-weight:700;
+      letter-spacing:.3px;
+      cursor:pointer;
+      transition: transform .2s ease, background .2s ease;
+      box-shadow: var(--shadow);
+      text-decoration:none;
+      display:inline-grid; align-items:center;
+    }
+    .btn:hover{ transform: translateY(-2px); background: rgba(255,255,255,.2); }
+    .btn:active{ transform: translateY(0); }
+
+    .btn .icon{
+      position:absolute; inset:0 auto 0 0;
+      width: var(--btn-h); height: var(--btn-h);
+      display:grid; place-items:center;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #fff8, #fff2 60%, #0000 70%);
+      border-right:1px solid rgba(255,255,255,.25);
+    }
+
+    /* Cake */
+    .cake{ font-size: clamp(60px,8vw,110px); filter: drop-shadow(0 10px 10px rgba(0,0,0,.35)); animation: bob 3s ease-in-out infinite; }
+    @keyframes bob{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-8px) } }
+
+    /* Floating balloons */
+    .balloon{ position:absolute; bottom:-20vh; width: clamp(38px, 6vw, 68px); aspect-ratio: .75/1; border-radius: 50% 50% 45% 45%; box-shadow: inset -8px -12px 20px rgba(0,0,0,.2); opacity:.7; animation: floatUp linear infinite; }
+    .balloon::after{ content:""; position:absolute; bottom:-18px; left:50%; width:2px; height:22px; background: rgba(255,255,255,.5); transform:translateX(-50%); }
+    @keyframes floatUp{ 0%{ transform:translateY(0) translateX(0) rotate(0)} 100%{ transform:translateY(-140vh) translateX(-30px) rotate(6deg)} }
+
+    /* twinkles */
+    .twinkle{ position:absolute; width:2px; height:2px; background:#fff; border-radius:50%; opacity:.8; animation: twinkle 2s ease-in-out infinite; }
+    @keyframes twinkle{ 0%,100%{ transform: scale(0); opacity: .3 } 50%{ transform: scale(1.2); opacity: 1 } }
+
+    /* Footer note */
+    .note{ margin-top: 14px; font-size: 12px; opacity:.8 }
+
+    /* Canvas overlay for confetti/fireworks */
+    #fx{ position:fixed; inset:0; pointer-events:none; }
+  </style>
+</head>
+<body>
+  <canvas id="fx"></canvas>
+  <div class="container">
+    <div class="card" role="group" aria-label="Birthday wish card">
+      <div class="cake" aria-hidden="true">🎂</div>
+      <h1 id="headline">Happy Birthday, <span id="name">Friend</span>! ✨</h1>
+      <p class="subtitle">Wishing you laughter, love, and magic—today and always.</p>
+      <p class="typewriter" id="message">I wish you always stay happy and smiling, Enjoying your life as always.</p>
+
+      <div class="cta">
+        <!-- Button 1: Trigger more confetti -->
+        <button class="btn" id="btnConfetti" aria-label="Celebrate with confetti">
+          <span class="icon">🎉</span>
+          Celebrate!
+        </button>
+
+        <!-- Button 2: Link to another HTML website. Replace LINK_URL with your page (e.g., second.html) -->
+        <a class="btn" id="btnLink" href="https://example.com" target="_blank" rel="noopener" aria-label="Open the surprise page">
+          <span class="icon">✨</span>
+          Open Surprise
+        </a>
+      </div>
+
+      <p class="note">Hope you are enjoying your day, The day that a princess was born. I am really proud of you.</p>
+    </div>
+  </div>
+
+  <!-- Balloons (auto-colored via JS) -->
+  <div id="balloons"></div>
+  <!-- Stars -->
+  <div id="stars"></div>
+
+  <script>
+    /**
+     * Personalize quickly: set the celebrant's name, the main message,
+     * and the target link for the button below.
+     */
+    const CELEBRANT_NAME = "Sadia"; // ← change name
+    const MAIN_MESSAGE = "May you start a new year of your life with happines and joy."; // ← change text
+    const LINK_URL = "file:///E:/Her%20Birthday/second.html"; // ← change to your other HTML file or any website URL
+
+    // Inject personalized text
+    document.getElementById('name').textContent = CELEBRANT_NAME;
+    document.getElementById('btnLink').setAttribute('href', LINK_URL);
+
+    // Typewriter effect for message
+    const msgEl = document.getElementById('message');
+    const full = MAIN_MESSAGE;
+    let i = 0;
+    function type(){ if(i <= full.length){ msgEl.textContent = full.slice(0,i++); requestAnimationFrame(()=>setTimeout(type, 18)); } }
+    type();
+
+    // Create floating balloons
+    const balloonColors = ['#FFD166','#06D6A0','#EF476F','#118AB2','#F4A261','#A78BFA','#FA8072'];
+    const balloonsWrap = document.getElementById('balloons');
+    function spawnBalloon(){
+      const b = document.createElement('div');
+      b.className = 'balloon';
+      const color = balloonColors[Math.floor(Math.random()*balloonColors.length)];
+      b.style.background = `radial-gradient(circle at 30% 30%, #fff6, ${color} 70%)`;
+      b.style.left = Math.random()*100 + 'vw';
+      b.style.animationDuration = (15 + Math.random()*12) + 's';
+      b.style.animationDelay = (-Math.random()*10) + 's';
+      balloonsWrap.appendChild(b);
+      // Clean up after it floats away
+      setTimeout(()=>b.remove(), 30000);
+    }
+    for(let k=0;k<18;k++) spawnBalloon();
+    setInterval(spawnBalloon, 1200);
+
+    // Twinkling stars
+    const starsWrap = document.getElementById('stars');
+    function spawnStar(){
+      const s = document.createElement('div');
+      s.className = 'twinkle';
+      s.style.left = Math.random()*100 + 'vw';
+      s.style.top = Math.random()*100 + 'vh';
+      s.style.animationDelay = (Math.random()*2)+'s';
+      starsWrap.appendChild(s);
+      setTimeout(()=>s.remove(), 4000);
+    }
+    setInterval(spawnStar, 80);
+
+    // Confetti / fireworks on canvas (lightweight)
+    const canvas = document.getElementById('fx');
+    const ctx = canvas.getContext('2d');
+    let W,H; function resize(){ W=canvas.width=innerWidth; H=canvas.height=innerHeight; } resize(); addEventListener('resize', resize);
+
+    const pieces = [];
+    function confettiBurst(x=W/2, y=H*0.35, count=180){
+      for(let i=0;i<count;i++){
+        const angle = Math.random()*Math.PI*2;
+        const speed = 2 + Math.random()*6;
+        pieces.push({
+          x, y,
+          vx: Math.cos(angle)*speed,
+          vy: Math.sin(angle)*speed - 3,
+          g: 0.08 + Math.random()*0.12,
+          size: 4 + Math.random()*6,
+          rot: Math.random()*Math.PI,
+          vr: (-0.3 + Math.random()*0.6),
+          hue: Math.floor(Math.random()*360),
+          life: 120 + Math.random()*80
+        });
+      }
+    }
+
+    function tick(){
+      ctx.clearRect(0,0,W,H);
+      for(let i=pieces.length-1;i>=0;i--){
+        const p = pieces[i];
+        p.vy += p.g; p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.life -= 1;
+        ctx.save();
+        ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+        ctx.fillStyle = `hsl(${p.hue} 90% 60%)`;
+        ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size);
+        ctx.restore();
+        if(p.life<=0 || p.y>H+30) pieces.splice(i,1);
+      }
+      requestAnimationFrame(tick);
+    }
+    tick();
+
+    // Fire two bursts on load for extra wow
+    setTimeout(()=>confettiBurst(W*0.3, H*0.4, 220), 400);
+    setTimeout(()=>confettiBurst(W*0.7, H*0.35, 240), 1000);
+
+    // Button burst
+    document.getElementById('btnConfetti').addEventListener('click', e =>{
+      const r = e.currentTarget.getBoundingClientRect();
+      confettiBurst(r.left + r.width/2, r.top + scrollY + r.height/2, 220);
+    });
+
+    // Improve motion for users who prefer reduced motion
+    const mq = matchMedia('(prefers-reduced-motion: reduce)');
+    if(mq.matches){
+      document.querySelectorAll('*').forEach(el=> el.style.animationDuration = '0.001s');
+    }
+  </script>
+</body>
+</html>
